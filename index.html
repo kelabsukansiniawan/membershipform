@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Borang Keahlian | Kelab Sukan Siniawan</title>
+<link rel="icon" href="Logo_Kelab_Sukan_Siniawan.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#14305f;--pink:#ff4d8d;--yellow:#ffd23f;--mint:#2fd9b5;--violet:#7b5cff;--orange:#ff8a3d;--ink:#14213d;--paper:#fffaf0}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:17px/1.5 "DM Sans",system-ui,sans-serif;background:var(--paper);
+ background-image:radial-gradient(var(--yellow) 1.5px,transparent 1.5px);background-size:26px 26px}
+header{background:linear-gradient(135deg,var(--violet),var(--pink) 55%,var(--orange));text-align:center;padding:30px 16px 54px;border-bottom:4px solid var(--ink);color:#fff}
+header img{width:150px;max-width:42%;height:auto;background:#fff;border:4px solid var(--ink);border-radius:20px;padding:6px;transform:rotate(-4deg);box-shadow:6px 6px 0 var(--ink)}
+h1{font:800 clamp(1.9rem,7vw,2.8rem)/1.05 "Bricolage Grotesque",sans-serif;margin:20px 0 6px;text-shadow:3px 3px 0 var(--ink)}
+header p{margin:0 auto;display:inline-block;background:var(--yellow);color:var(--ink);font-weight:700;padding:4px 14px;border:3px solid var(--ink);border-radius:99px;transform:rotate(1.5deg)}
+main{max-width:720px;margin:-24px auto 0;padding:0 14px 60px}
+fieldset{--c:var(--mint);background:#fff;border:3px solid var(--ink);border-radius:22px;box-shadow:7px 7px 0 var(--c);margin:26px 0;padding:18px 18px 6px;min-width:0}
+fieldset:nth-of-type(2){--c:var(--yellow)}fieldset:nth-of-type(3){--c:var(--pink)}fieldset:nth-of-type(4){--c:var(--violet)}fieldset:nth-of-type(5){--c:var(--orange)}
+legend{font:800 1.3rem "Bricolage Grotesque",sans-serif;background:var(--c);border:3px solid var(--ink);border-radius:99px;padding:2px 16px}
+label,.lbl{display:block;font-weight:700;margin:0 0 14px}
+small{font-weight:500;color:#566079;display:block}
+input:not([type=checkbox]):not([type=radio]),select,textarea{width:100%;font:inherit;font-weight:500;padding:11px 12px;margin-top:5px;border:3px solid var(--ink);border-radius:14px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:0;box-shadow:4px 4px 0 var(--violet)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 16px}
+.chips label{margin:0;position:relative}
+.chips input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chips span{display:block;padding:8px 16px;border:3px solid var(--ink);border-radius:99px;background:#fff;font-weight:700;transition:transform .12s,background .12s}
+.chips input:hover+span{transform:translateY(-2px)}
+.chips input:checked+span{background:var(--mint);box-shadow:3px 3px 0 var(--ink);transform:translate(-1px,-1px)}
+.chips.big input:checked+span{background:var(--pink);color:#fff}
+.chips input:focus-visible+span{outline:3px solid var(--violet);outline-offset:2px}
+.chk{display:flex;gap:12px;align-items:flex-start;font-weight:500;background:#f4f0ff;border:2px dashed var(--violet);border-radius:14px;padding:10px 12px}
+.chk input{width:22px;height:22px;flex:none;margin:2px 0 0;accent-color:var(--violet)}
+button{font:800 1.35rem "Bricolage Grotesque",sans-serif;width:100%;color:#fff;background:var(--pink);border:3px solid var(--ink);border-radius:18px;padding:16px;box-shadow:6px 6px 0 var(--ink);cursor:pointer;transition:transform .1s,box-shadow .1s}
+button:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--ink)}
+button:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+button:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+button:disabled{opacity:.6}
+#guardian[hidden],#thanks[hidden],#err[hidden]{display:none}
+#thanks,#err{border:3px solid var(--ink);border-radius:20px;padding:22px;margin-top:20px;font-weight:700;text-align:center;font-size:1.15rem}
+#thanks{background:var(--mint);box-shadow:7px 7px 0 var(--ink)}#thanks b{display:block;font:800 2rem "Bricolage Grotesque",sans-serif}
+#err{background:#ffd9e4}
+.hp{position:absolute;left:-9999px}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:9}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <img src="Logo_Kelab_Sukan_Siniawan.png" alt="Logo Kelab Sukan Siniawan">
+  <h1>Jom jadi ahli!<br>Join the squad</h1>
+  <p>Bersama Kita Hebat, Bersatu Kita Kuat</p>
+</header>
+<main>
+<form id="f" action="PASTE_YOUR_WEB_APP_URL_HERE" method="POST">
+<input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+<fieldset><legend>👋 Kenali awak / About you</legend>
+  <label>Nama penuh (seperti dalam IC) / Full name
+    <input name="nama" required autocomplete="name"></label>
+  <div class="row">
+    <label>No. kad pengenalan / passport <input name="ic" required inputmode="numeric" placeholder="cth: 900101-13-1234"></label>
+    <label>Tarikh lahir / Date of birth <input type="date" id="dob" name="dob" required></label>
+  </div>
+  <div class="row">
+    <label>Jantina / Gender
+      <select name="jantina" required><option value="">Pilih / Select</option><option>Lelaki / Male</option><option>Perempuan / Female</option></select></label>
+    <label>Pekerjaan / Sekolah / Occupation or school <input name="pekerjaan"></label>
+  </div>
+  <div class="row">
+    <label>No. telefon (WhatsApp) / Phone <input type="tel" name="telefon" required autocomplete="tel"></label>
+    <label>E-mel / Email <small>Pilihan / optional</small><input type="email" name="email" autocomplete="email"></label>
+  </div>
+  <label>Alamat / Address <textarea name="alamat" rows="2" required autocomplete="street-address"></textarea></label>
+</fieldset>
+
+<fieldset id="guardian" hidden><legend>👨‍👩‍👧 Penjaga (bawah 18 tahun) / Parent or guardian</legend>
+  <div class="row">
+    <label>Nama penjaga / Guardian name <input name="penjaga_nama"></label>
+    <label>Hubungan / Relationship <input name="penjaga_hubungan"></label>
+  </div>
+  <div class="row">
+    <label>No. telefon penjaga / Phone <input type="tel" name="penjaga_telefon"></label>
+    <label>No. IC penjaga / Guardian IC <input name="penjaga_ic"></label>
+  </div>
+  <label class="chk"><input type="checkbox" name="penjaga_izin" value="Ya"> Saya membenarkan anak/tanggungan saya menjadi ahli kelab. / I consent to my child or ward becoming a member.</label>
+</fieldset>
+
+<fieldset><legend>⚽ Gaya awak / Your game</legend>
+  <div class="lbl">Jenis keahlian / Membership type</div>
+  <div class="chips big" role="radiogroup">
+    <label><input type="radio" name="jenis" value="Biasa" required><span>Biasa / Ordinary</span></label>
+    <label><input type="radio" name="jenis" value="Seumur Hidup"><span>Seumur Hidup / Lifetime</span></label>
+  </div>
+  <div class="lbl">Sukan diminati / Sports of interest <small>Tekan satu atau lebih / tap one or more</small></div>
+  <div class="chips">
+    <label><input type="checkbox" name="sukan" value="Bola sepak"><span>⚽ Bola sepak</span></label>
+    <label><input type="checkbox" name="sukan" value="Futsal"><span>🥅 Futsal</span></label>
+    <label><input type="checkbox" name="sukan" value="Badminton"><span>🏸 Badminton</span></label>
+    <label><input type="checkbox" name="sukan" value="Sepak takraw"><span>🏐 Sepak takraw</span></label>
+    <label><input type="checkbox" name="sukan" value="Bola tampar"><span>🏐 Bola tampar</span></label>
+    <label><input type="checkbox" name="sukan" value="Larian"><span>🏃 Larian</span></label>
+    <label><input type="checkbox" name="sukan" value="Mendaki"><span>🥾 Mendaki / Hiking</span></label>
+    <label><input type="checkbox" name="sukan" value="Renang"><span>🏊 Renang / Swimming</span></label>
+    <label><input type="checkbox" name="sukan" value="Lain-lain"><span>✨ Lain-lain</span></label>
+  </div>
+  <div class="row">
+    <label>Peranan / Role
+      <select name="peranan"><option>Pemain / Player</option><option>Jurulatih / Coach</option><option>Pengadil / Referee</option><option>Sukarelawan / Volunteer</option><option>Penyokong / Supporter</option></select></label>
+    <label>Tahap kemahiran / Skill level
+      <select name="tahap"><option>Pemula / Beginner</option><option>Sederhana / Intermediate</option><option>Mahir / Advanced</option></select></label>
+  </div>
+  <label>Saiz jersi / Jersey size
+    <select name="jersi"><option value="">Pilih / Select</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option></select></label>
+</fieldset>
+
+<fieldset><legend>🚑 Kecemasan / Emergency</legend>
+  <div class="row">
+    <label>Nama waris / Emergency contact <input name="waris_nama" required></label>
+    <label>Hubungan / Relationship <input name="waris_hubungan" required></label>
+  </div>
+  <label>No. telefon waris / Contact phone <input type="tel" name="waris_telefon" required></label>
+  <label>Masalah kesihatan atau alahan / Medical conditions or allergies
+    <small>Pilihan. Hanya yang perlu diketahui jurulatih. / Optional, only what coaches need to know.</small>
+    <textarea name="kesihatan" rows="2"></textarea></label>
+</fieldset>
+
+<fieldset><legend>✍️ Satu lagi langkah / Last step</legend>
+  <label class="chk"><input type="checkbox" name="akuan_peraturan" value="Ya" required> Saya mengaku maklumat di atas benar dan bersetuju mematuhi perlembagaan dan peraturan kelab. / I confirm the details are true and agree to follow the club's rules.</label><br>
+  <label class="chk"><input type="checkbox" name="akuan_risiko" value="Ya" required> Saya faham sukan mempunyai risiko kecederaan dan menyertainya atas risiko sendiri. / I understand sport carries a risk of injury and take part at my own risk.</label><br>
+  <label class="chk"><input type="checkbox" name="akuan_pdpa" value="Ya" required> Saya membenarkan kelab menyimpan data saya untuk urusan keahlian (PDPA 2010). / I allow the club to store my data for membership purposes.</label><br>
+  <label class="chk"><input type="checkbox" name="akuan_foto" value="Ya"> Saya membenarkan gambar saya digunakan di media sosial kelab. <small>Pilihan / optional</small></label>
+  <label style="margin-top:16px">Tandatangan (taip nama penuh) / Signature (type full name) <input name="tandatangan" required></label>
+</fieldset>
+
+<button type="submit" id="btn">Hantar / Join the squad 🚀</button>
+<div id="thanks" hidden><b>Yeay, selamat datang! 🎉</b>Pendaftaran anda telah diterima. Pihak kelab akan menghubungi anda. / Your registration has been received.</div>
+<div id="err" hidden>Alamak, tak dapat hantar. Semak internet dan cuba lagi. / Could not send. Check your connection and try again.</div>
+</form>
+</main>
+<script>
+const f=document.getElementById('f'),g=document.getElementById('guardian'),dob=document.getElementById('dob');
+dob.addEventListener('change',()=>{
+  const d=new Date(dob.value);if(isNaN(d))return;
+  const t=new Date(),age=t.getFullYear()-d.getFullYear()-((t.getMonth()<d.getMonth()||(t.getMonth()==d.getMonth()&&t.getDate()<d.getDate()))?1:0);
+  const minor=age<18;g.hidden=!minor;
+  g.querySelectorAll('input').forEach(i=>i.required=minor&&i.name!=='penjaga_ic');
+});
+function confetti(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const c=document.createElement('canvas'),x=c.getContext('2d');document.body.appendChild(c);
+  c.width=innerWidth;c.height=innerHeight;
+  const col=['#ff4d8d','#ffd23f','#2fd9b5','#7b5cff','#ff8a3d'];
+  const p=Array.from({length:120},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,s:6+Math.random()*8,v:2+Math.random()*4,w:Math.random()*2-1,c:col[Math.random()*5|0]}));
+  let n=0;(function a(){x.clearRect(0,0,c.width,c.height);p.forEach(q=>{q.y+=q.v;q.x+=q.w*2;x.fillStyle=q.c;x.fillRect(q.x,q.y,q.s,q.s*.6)});
+  if(++n<200)requestAnimationFrame(a);else c.remove()})();
+}
+f.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const b=document.getElementById('btn');b.disabled=true;
+  document.getElementById('err').hidden=true;
+  try{
+    await fetch(f.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(f))});
+    f.querySelectorAll('fieldset,button').forEach(x=>x.hidden=true);
+    document.getElementById('thanks').hidden=false;window.scrollTo(0,0);confetti();
+  }catch(_){document.getElementById('err').hidden=false;b.disabled=false}
+});
+</script>
+</body>
+</html>
